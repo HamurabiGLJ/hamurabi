@@ -5,7 +5,6 @@ import java.util.*;
 public class Hammurabi {
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
-    private int land;
 
 
     public static void main(String[] args) { // required in every Java program
@@ -14,10 +13,10 @@ public class Hammurabi {
 
     void playGame() {
         // declare local variables here: grain, population, etc.
-        Integer bushelsGrain = 2800;
-        Integer population = 100;
-        Integer land = 1000;
-        Integer landValue = 19;
+        int bushelsGrain = 2800;
+        int population = 100;
+        int land = 1000;
+        int landValue = 19;
         int year = 1;
         int cumulativePopulation = population;
         int cumulativeStarvations = 0;
@@ -37,7 +36,7 @@ public class Hammurabi {
             bushelsGrain -= acresToBuy * landValue + (acresToSell * landValue);
 
             // grains fed to people
-            int grainsFed = askHowMuchGrainToFeedPeople(population, bushelsGrain);
+            int grainsFed = askHowMuchGrainToFeedPeople(bushelsGrain);
             bushelsGrain -= grainsFed;
             // acres to plant
             int acresPlanted = askHowManyAcresToPlant(land, population, bushelsGrain);
@@ -66,7 +65,7 @@ public class Hammurabi {
             }
 
             // Handle harvest
-            int grainHarvested = harvest(land, acresPlanted);
+            int grainHarvested = harvest(land);
             bushelsGrain += grainHarvested;
             int grainsPerAcre = 0;
             if (grainHarvested != 0 && acresPlanted != 0) {
@@ -207,7 +206,7 @@ public class Hammurabi {
     int askHowManyAcresToSell(int acresOwned) {
         int acresToSell = getNumber("How many acres of land would you like to sell?\n");
         while (acresToSell > acresOwned) {
-            System.out.println("O Hammurabi, but you only have " + land + " acres of land!\n");
+            System.out.println("O Hammurabi, but you only have " + acresOwned + " acres of land!\n");
             acresToSell = getNumber("How many acres of land would you like to sell?\n");
         }
         return acresToSell;
@@ -285,9 +284,10 @@ public class Hammurabi {
                     (bushelsFedToPeople/20) + ".");
             return population - bushelsFedToPeople/20;
         }
-        else
+        else {
             System.out.println("O Great Hammurabi, all our subjects are fed! No one died from starvation.");
             return 0;
+        }
     }
 
     boolean uprising(int population, int howManyPeopleStarved) {
