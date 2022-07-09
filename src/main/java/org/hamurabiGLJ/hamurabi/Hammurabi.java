@@ -13,9 +13,9 @@ public class Hammurabi {
 
     void playGame() {
         // declare local variables here: grain, population, etc.
-        Integer grain = 100;
-        Integer population = 4;
-        Integer land = 400;
+        Integer grain = 2800;
+        Integer population = 100;
+        Integer land = 1000;
         Integer landValue = 19;
 
 //        Each person needs at least 20 bushels of grain per year to survive
@@ -30,7 +30,8 @@ public class Hammurabi {
 
         // statements go after the declarations
 
-        askHowManyAcresToPlant(land, population, grain);
+        starvationDeaths(5,100);
+//        askHowManyAcresToPlant(land, population, grain);
     }
 
     int getNumber(String message) {
@@ -78,11 +79,6 @@ public class Hammurabi {
 //        You must have enough acres, enough grain, and enough people to do the planting.
 //        Any grain left over goes into storage for next year.
 
-        //        Integer grain = 2800;
-        //        Integer population = 100;
-        //        Integer land = 1000;
-        //        Integer landValue = 19;
-
         String msg = "How many acres do you want to plant with grain?\n";
         int input = getNumber(msg);
 
@@ -114,7 +110,23 @@ public class Hammurabi {
 
     int plagueDeaths(int population) {return 0;}
 
-    int starvationDeaths(int population, int bushelsFedToPeople) {return 0;}
+    int starvationDeaths(int population, int bushelsFedToPeople) {
+//        Each person needs 20 bushels of grain to survive.
+//        If you feed them more than this, they are happy, but the grain is still gone.
+//        You don't get any benefit from having happy subjects.
+//        Return the number of deaths from starvation (possibly zero).
+        int numberOfPeopleFed = bushelsFedToPeople/20;
+
+        if (numberOfPeopleFed < population) { //100 fed divide by 20 means 5, if 5 < pop. 100, 95 ppl died.
+            System.out.println("O Great Hammurabi, our population has been reduced by " +
+                    (population - bushelsFedToPeople/20) + " subjects due to starvation. Our population is now " +
+                    (bushelsFedToPeople/20) + ".");
+            return population - bushelsFedToPeople/20;
+        }
+        else
+            System.out.println("O Great Hammurabi, all our subjects are fed! No one died from starvation.");
+            return 0;
+    }
 
     boolean uprising(int population, int howManyPeopleStarved) {return false;}
 
