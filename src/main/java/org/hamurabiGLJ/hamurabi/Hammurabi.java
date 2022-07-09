@@ -33,7 +33,8 @@ public class Hammurabi {
                 acresToSell = askHowManyAcresToSell(land);
             }
             land += acresToBuy - acresToSell;
-            bushelsGrain -= acresToBuy * landValue + (acresToSell * landValue);
+            bushelsGrain -= acresToBuy * landValue;
+            bushelsGrain += acresToSell * landValue;
 
             // grains fed to people
             int grainsFed = askHowMuchGrainToFeedPeople(bushelsGrain);
