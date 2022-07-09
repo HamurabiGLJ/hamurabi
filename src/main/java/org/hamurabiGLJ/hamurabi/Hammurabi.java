@@ -29,7 +29,7 @@ public class Hammurabi {
 //        Land value is 19 bushels/acre
 
         // statements go after the declarations
-         grainEatenByRats(100);
+         grainEatenByRats(grain);
 //        starvationDeaths(5,100);
 //        askHowManyAcresToPlant(land, population, grain);
     }
@@ -143,7 +143,8 @@ public class Hammurabi {
         if (chanceRatInfestation <= 40) {
             int eatenByRat = rand.nextInt(10,31);
             System.out.println(eatenByRat);
-            System.out.println("O Great Hammurabi, there is an infestation! The rats have eaten " + (bushels*eatenByRat/100));
+            System.out.println("O Great Hammurabi, there is an infestation! The rats have eaten " +
+                    (bushels*eatenByRat/100) + " bushels!");
             return (bushels*eatenByRat/100);
         }
         System.out.println("O Great Hammurabi, the rats have not eaten any of our bushels!");
