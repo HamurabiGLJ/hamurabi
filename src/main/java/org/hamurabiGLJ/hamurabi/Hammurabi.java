@@ -5,6 +5,7 @@ import java.util.*;
 public class Hammurabi {
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
+    private int land;
 
 
     public static void main(String[] args) { // required in every Java program
@@ -27,12 +28,12 @@ public class Hammurabi {
             System.out.print(message);
             try {
                 return scanner.nextInt();
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("\"" + scanner.next() + "\" isn't a number!");
             }
         }
     }
+
     int askHowManyAcresToBuy(int price, int bushels) {
         int maxAcres = bushels / price;
         String msg = "How many acres of land would you like to buy?";
@@ -46,7 +47,14 @@ public class Hammurabi {
         return input;
     }
 
-    int askHowManyAcresToSell(int acresOwned) {return 0;}
+    int askHowManyAcresToSell(int acresOwned) {
+        int acresToSell = getNumber("How many acres of land would you like to sell?\n");
+        while (acresToSell > acresOwned) {
+            System.out.println("O Hammurabi, but you only have " + land + " acres of land!\n");
+            acresToSell = getNumber("How many acres of land would you like to sell?\n");
+        }
+        return acresToSell;
+    }
 
     int askHowMuchGrainToFeedPeople(int bushels) {
         //Ask the player how much grain to feed people, and returns that number.
@@ -74,10 +82,12 @@ public class Hammurabi {
             if (input > acresOwned) {
                 String newMsg = String.format("O Great Hammurabi, surely you jest! We'd need %d acres but we only have %d!",
                         input, acresOwned);
+
                 System.out.println(newMsg);
                 input = getNumber(msg);
                 continue;
             }
+
             if (input/10 > population) {
                 String newMsg = String.format("O Great Hammurabi, surely you jest! We'd need %d people but we only have %d!",
                         input/10 , population);
@@ -85,6 +95,7 @@ public class Hammurabi {
                 input = getNumber(msg);
                 continue;
             }
+
             if (input > bushels/2) {
                 String newMsg = String.format("O Great Hammurabi, surely you jest! We'd need %d bushels but we only have %d!",
                         input*2, bushels);
@@ -96,9 +107,15 @@ public class Hammurabi {
         }
     }
 
-    int plagueDeaths(int population) {return 0;}
+    int plagueDeaths(int population) {
+        if (rand.nextInt(101) <= 15)  {
+            return population / 2;
+        }
+        return 0;
+    }
 
     int starvationDeaths(int population, int bushelsFedToPeople) {
+
 //        Each person needs 20 bushels of grain to survive.
 //        If you feed them more than this, they are happy, but the grain is still gone.
 //        You don't get any benefit from having happy subjects.
@@ -116,13 +133,21 @@ public class Hammurabi {
             return 0;
     }
 
-    boolean uprising(int population, int howManyPeopleStarved) {return false;}
+    boolean uprising(int population, int howManyPeopleStarved) {
+        return (((double)howManyPeopleStarved / population) >= 0.45);
+    }
 
-    int immigrants(int population, int acresOwned, int grainInStorage) {return 0;}
+    int immigrants(int population, int acresOwned, int grainInStorage) {
+        return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
+    }
 
-    int harvest(int acres, int bushelsUsedAsSeed) {return 0;}
+    int harvest(int acres) {
+        int yield = rand.nextInt(1,7);
+        return acres * yield;
+    }
 
     int grainEatenByRats(int bushels) {
+
         //here is a 40% chance that you will have a rat`` infestation.
         // When this happens, rats will eat somewhere between 10% and 30% of your grain.
         // Return the amount of grain eaten by rats (possibly zero).
@@ -139,5 +164,7 @@ public class Hammurabi {
         return 0;
     }
 
-    int newCostOfLand() {return 0;}
+    int newCostOfLand() {
+        return rand.nextInt(17,24);
+    }
 }
