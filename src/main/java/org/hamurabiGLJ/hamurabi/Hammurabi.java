@@ -66,7 +66,7 @@ public class Hammurabi {
             }
 
             // Handle harvest
-            int grainHarvested = harvest(land);
+            int grainHarvested = harvest(acresPlanted);
             bushelsGrain += grainHarvested;
             int grainsPerAcre = 0;
             if (grainHarvested != 0 && acresPlanted != 0) {
@@ -121,8 +121,8 @@ public class Hammurabi {
                 : 10;
 
         if (evalPoints >= 100) {
-            evalMsg = "AMAZING performance O great Hammurabi! Statues will be made all over and songs will be sung about your" +
-                    "glorious rule for a long time to come!\n";
+            evalMsg = "AMAZING performance O great Hammurabi! Your statues will be made all over the kingdom and songs will be sung about your" +
+                    " glorious rule for a long time to come!\n";
         } else if (evalPoints >= 80) {
             evalMsg = "Great performance. As expected of the great Hammurabi!";
         } else if (evalPoints >= 30) {
@@ -280,9 +280,9 @@ public class Hammurabi {
         int numberOfPeopleFed = bushelsFedToPeople/20;
 
         if (numberOfPeopleFed < population) {
-            System.out.println("O Great Hammurabi, our population has been reduced by " +
-                    (population - bushelsFedToPeople/20) + " subjects due to starvation. Our population is now " +
-                    (bushelsFedToPeople/20) + ".");
+//            System.out.println("O Great Hammurabi, our population has been reduced by " +
+//                    (population - bushelsFedToPeople/20) + " subjects due to starvation. Our population is now " +
+//                    (bushelsFedToPeople/20) + ".");
             return population - bushelsFedToPeople/20;
         }
         else {
