@@ -286,7 +286,7 @@ public class Hammurabi {
             return population - bushelsFedToPeople/20;
         }
         else {
-            System.out.println("O Great Hammurabi, all our subjects are fed! No one died from starvation.");
+//            System.out.println("O Great Hammurabi, all our subjects are fed! No one died from starvation.");
             return 0;
         }
     }
