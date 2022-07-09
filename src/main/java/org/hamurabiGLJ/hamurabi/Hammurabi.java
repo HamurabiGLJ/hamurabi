@@ -18,20 +18,8 @@ public class Hammurabi {
         Integer land = 1000;
         Integer landValue = 19;
 
-//        Each person needs at least 20 bushels of grain per year to survive
-//        Each person can farm at most 10 acres of land
-//        It takes 2 bushels of grain to farm an acre of land
-//        The market price for land fluctuates yearly
-
-//        100 people
-//        2800 bushels of grain in storage
-//        1000 acres of land
-//        Land value is 19 bushels/acre
-
         // statements go after the declarations
-         grainEatenByRats(grain);
-//        starvationDeaths(5,100);
-//        askHowManyAcresToPlant(land, population, grain);
+
     }
 
     int getNumber(String message) {
@@ -117,7 +105,7 @@ public class Hammurabi {
 //        Return the number of deaths from starvation (possibly zero).
         int numberOfPeopleFed = bushelsFedToPeople/20;
 
-        if (numberOfPeopleFed < population) { //100 fed divide by 20 means 5, if 5 < pop. 100, 95 ppl died.
+        if (numberOfPeopleFed < population) {
             System.out.println("O Great Hammurabi, our population has been reduced by " +
                     (population - bushelsFedToPeople/20) + " subjects due to starvation. Our population is now " +
                     (bushelsFedToPeople/20) + ".");
