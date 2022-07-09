@@ -13,17 +13,46 @@ public class Hammurabi {
 
     void playGame() {
         // declare local variables here: grain, population, etc.
-        Integer grain = 2800;
+        Integer bushelsGrain = 2800;
         Integer population = 100;
         Integer land = 1000;
         Integer landValue = 19;
 
         // statements go after the declarations
+        // get buy and sell
+        land += askHowManyAcresToBuy(landValue, bushelsGrain) - askHowManyAcresToSell(land);
+
+        // grains fed to people
+        int grainsFed = askHowMuchGrainToFeedPeople(population, bushelsGrain);
+        bushelsGrain -= grainsFed;
+
+        int acresPlanted = askHowManyAcresToPlant(land, population, bushelsGrain);
+        bushelsGrain -= acresPlanted;
+
+        population -= plagueDeaths(population);
+
+        int starvationAmount = starvationDeaths(population, grainsFed);
+        // TODO: handle uprising
+        boolean isUprising = uprising(population, starvationAmount);
+        population -= starvationAmount;
+
+        if (starvationAmount == 0) {
+            population += immigrants(population, land, bushelsGrain);
+        }
+        bushelsGrain += harvest(land, acresPlanted);
+
+        bushelsGrain -= grainEatenByRats(bushelsGrain);
+
+        landValue = newCostOfLand();
+    }
+
+    void printSummary() {
+        System.out.println("");
     }
 
     int getNumber(String message) {
         while (true) {
-            System.out.print(message);
+            System.out.println(message);
             try {
                 return scanner.nextInt();
             }
@@ -32,11 +61,22 @@ public class Hammurabi {
             }
         }
     }
-    int askHowManyAcresToBuy(int price, int bushels) {return 0;}
+    int askHowManyAcresToBuy(int price, int grainStock) {
+        int maxAcres = grainStock / price;
+        String msg = "Great Harambe, how many acres of land would you like to buy?";
+        int input = getNumber(msg);
+        while (input > maxAcres) {
+            String exceededMsg = String.format("O Great Hammurabi, surely you jest! We'd need %d bushels but we only have %d!",
+                    input * price, grainStock);
+            System.out.println(exceededMsg);
+            input = getNumber(msg);
+        }
+        return input;
+    }
     //other methods go here
     int askHowManyAcresToSell(int acresOwned) {return 0;}
 
-    int askHowMuchGrainToFeedPeople(int bushels) {return 0;}
+    int askHowMuchGrainToFeedPeople(int population, int grainStock) {return 0;}
 
     int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {return 0;};
 
