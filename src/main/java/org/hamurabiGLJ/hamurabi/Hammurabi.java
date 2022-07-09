@@ -204,10 +204,10 @@ public class Hammurabi {
 
 
     int askHowManyAcresToSell(int acresOwned) {
-        int acresToSell = getNumber("How many acres of land would you like to sell?\n");
+        int acresToSell = getNumber("How many acres of land would you like to sell?");
         while (acresToSell > acresOwned) {
-            System.out.println("O Hammurabi, but you only have " + acresOwned + " acres of land!\n");
-            acresToSell = getNumber("How many acres of land would you like to sell?\n");
+            System.out.println("O Hammurabi, but you only have " + acresOwned + " acres of land!");
+            acresToSell = getNumber("How many acres of land would you like to sell?");
         }
         return acresToSell;
     }
@@ -215,7 +215,7 @@ public class Hammurabi {
     int askHowMuchGrainToFeedPeople(int bushels) {
         //Ask the player how much grain to feed people, and returns that number.
         // You can't feed them more grain than you have. You can feed them more than they need to survive.
-        String msg = "How many bushels of grain do you want to feed your people?\n";
+        String msg = "How many bushels of grain do you want to feed your people?";
         int input = getNumber(msg);
         while (input > bushels) {
             String newMsg = String.format("O Great Hammurabi, surely you jest! We'd need %d bushels but we only have %d!",
@@ -231,7 +231,7 @@ public class Hammurabi {
 //        You must have enough acres, enough grain, and enough people to do the planting.
 //        Any grain left over goes into storage for next year.
 
-        String msg = "How many acres do you want to plant with grain?\n";
+        String msg = "How many acres do you want to plant with grain?";
         int input = getNumber(msg);
 
         while (true) {
@@ -264,7 +264,7 @@ public class Hammurabi {
     }
 
     int plagueDeaths(int population) {
-        if (rand.nextInt(101) <= 15)  {
+        if (rand.nextInt(0,101) <= 15)  {
             return population / 2;
         }
         return 0;
