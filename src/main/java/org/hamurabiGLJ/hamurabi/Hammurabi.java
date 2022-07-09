@@ -120,12 +120,12 @@ public class Hammurabi {
                 : 10;
 
         if (evalPoints >= 100) {
-            evalMsg = "AMAZING performance O great Hamurabi! Statues will be made all over and songs will be sung about your" +
+            evalMsg = "AMAZING performance O great Hammurabi! Statues will be made all over and songs will be sung about your" +
                     "glorious rule for a long time to come!\n";
         } else if (evalPoints >= 80) {
-            evalMsg = "Great performance. As expected of the great Hamurabi!";
+            evalMsg = "Great performance. As expected of the great Hammurabi!";
         } else if (evalPoints >= 30) {
-            evalMsg = "An average performance..but Hamurabi cannot be average. Are you really Hamurabi?";
+            evalMsg = "An average performance..but Hammurabi cannot be average. Are you really Hammurabi?";
         } else {
             evalMsg = "HORRIBLE! You must be an imposter!";
         }
@@ -146,7 +146,7 @@ public class Hammurabi {
                 You are in year %d of your ten year rule.
                 %d people have starved to death out of %d!
                 There has been uprising due to your cruelty and the people have removed you from your post!
-                Oh poor Hamurabi!
+                Oh poor Hammurabi!
                 GAME OVER
                 """.formatted(year, peopleStarved, population);
         System.out.println(summary);
