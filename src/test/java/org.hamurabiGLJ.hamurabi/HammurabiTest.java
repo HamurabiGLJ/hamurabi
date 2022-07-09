@@ -18,6 +18,8 @@ public class HammurabiTest {
         ham = new Hammurabi();
     }
 
+
+
     @Test
     public final void testPlagueDeaths1() {
         int number_of_plagues = 0;
@@ -120,6 +122,8 @@ public class HammurabiTest {
             assertTrue("You never have a land cost of " + j + " bushels per acre.", cost[j] > 0);
         }
     }
-
+    @Test
+    public void testAskHowManyAcresToBuy() {
+    }
 }
 
